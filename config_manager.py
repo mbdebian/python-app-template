@@ -16,3 +16,4 @@ import os
 # Application defaults - NORMAL OPERATION MODE
 _folder_bin = os.path.abspath('bin')
 _folder_config = os.path.abspath('config')
+_folder_docs = os.path.abspath('docs')
