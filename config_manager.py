@@ -8,5 +8,5 @@
 # 
 
 """
-Document your module here
+This module implements configuration management for the application
 """
