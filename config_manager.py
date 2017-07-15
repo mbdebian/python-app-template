@@ -20,3 +20,6 @@ _folder_docs = os.path.abspath('docs')
 _folder_logs = os.path.abspath('logs')
 _folder_resources = os.path.abspath('resources')
 _folder_run = os.path.abspath('run')
+
+# Configuration file name
+__configuration_file_name = None
