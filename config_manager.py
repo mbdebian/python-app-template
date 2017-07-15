@@ -23,3 +23,10 @@ _folder_run = os.path.abspath('run')
 
 # Configuration file name
 __configuration_file_name = None
+
+# Logging defaults
+_logger_formatters = {
+    "DEBUG": "%(asctime)s [%(levelname)7s][%(name)28s][%(module)18s, %(lineno)4s] %(message)s",
+    "INFO": "%(asctime)s [%(levelname)7s][%(name)28s] %(message)s"
+}
+_log_level = 'DEBUG'
