@@ -30,3 +30,7 @@ _logger_formatters = {
     "INFO": "%(asctime)s [%(levelname)7s][%(name)28s] %(message)s"
 }
 _log_level = 'DEBUG'
+
+
+def set_application_config_file(configuration_file):
+    pass
