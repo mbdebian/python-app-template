@@ -10,3 +10,6 @@
 """
 Application general toolbox module
 """
+
+def read_json(json_file="json_file_not_specified.json"):
+    pass
