@@ -13,6 +13,7 @@ This module implements configuration management for the application
 
 import os
 # App imports
+from toolbox import general
 from exceptions import AppConfigException
 
 # Application defaults - NORMAL OPERATION MODE
@@ -58,4 +59,11 @@ def get_app_config_manager():
 
 
 def read_config_from_file(configuration_file):
-    pass
+    config_file_path = configuration_file
+    if not os.path.isabs(config_file_path):
+        config_file_path = os.path.join(_folder_config, configuration_file)
+    try:
+        return general.read_json(config_file_path)
+    except Exception as e:
+        msg = "Config file {} could not be read, because {}".format(config_file_path, str(e))
+        raise AppConfigException(msg)
