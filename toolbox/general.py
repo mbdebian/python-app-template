@@ -11,5 +11,9 @@
 Application general toolbox module
 """
 
+import json
+
+
 def read_json(json_file="json_file_not_specified.json"):
-    pass
+    with open(json_file) as jf:
+        return json.load(jf)
