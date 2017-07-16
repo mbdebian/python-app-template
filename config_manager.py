@@ -12,6 +12,8 @@ This module implements configuration management for the application
 """
 
 import os
+# App imports
+from exceptions import AppConfigException
 
 # Application defaults - NORMAL OPERATION MODE
 _folder_bin = os.path.abspath('bin')
