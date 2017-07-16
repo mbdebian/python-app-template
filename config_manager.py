@@ -59,6 +59,12 @@ def get_app_config_manager():
 
 
 def read_config_from_file(configuration_file):
+    """
+    Given a file name or absolute path, read its configuration information in json format and return its object
+    representation
+    :param configuration_file: file name or absolute path for the file that contains the configuration information
+    :return: an object representation of the json formatted configuration information read from the file
+    """
     config_file_path = configuration_file
     if not os.path.isabs(config_file_path):
         config_file_path = os.path.join(_folder_config, configuration_file)
