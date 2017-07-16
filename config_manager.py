@@ -33,4 +33,8 @@ _log_level = 'DEBUG'
 
 
 def set_application_config_file(configuration_file):
-    pass
+    global __configuration_file_name
+    if __configuration_file_name is not None:
+        raise AppConfigException(
+            "Configuration file can't be changed once an initial configuartion file has been provided")
+    __configuration_file_name = configuration_file
