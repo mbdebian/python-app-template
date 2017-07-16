@@ -55,3 +55,7 @@ __app_config_manager = None
 
 def get_app_config_manager():
     pass
+
+
+def read_config_from_file(configuration_file):
+    pass
