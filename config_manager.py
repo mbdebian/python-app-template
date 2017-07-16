@@ -33,6 +33,13 @@ _log_level = 'DEBUG'
 
 
 def set_application_config_file(configuration_file):
+    """
+    This method sets the application wide configuration file that will be used
+    :param configuration_file: config file name if the file is in the default configuration path or path to the
+    configuration file if it is not.
+    :return: no return value
+    :exception: ConfigException is raised if there already is a configuration file set
+    """
     global __configuration_file_name
     if __configuration_file_name is not None:
         raise AppConfigException(
