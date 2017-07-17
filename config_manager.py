@@ -84,3 +84,10 @@ class ConfigurationManager:
         self.__configuration_object = configuration_object
         self.__configuration_file = configuration_file
 
+    def _get_value_for_key(self, key):
+        if key in self.__configuration_object:
+            return self.__configuration_object[key]
+        else:
+            msg = "MISSING configuration key '{}' in configuration file '{}'".format(key, self.__configuration_file)
+            raise ConfigManagerException(msg)
+
