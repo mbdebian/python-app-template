@@ -137,3 +137,17 @@ class AppConfigManager(ConfigurationManager):
 
     def _get_log_handlers(self):
         return self.__log_handlers
+
+    def get_logger_for(self, name):
+        """
+        Create a logger on demand
+        :param name: name to be used in the logger
+        :return: a new logger on that name
+        """
+        self._get_logger().debug("Creating logger with name {}".format(name))
+        lg = logging.getLogger(name)
+        for handler in self._get_log_handlers():
+            lg.addHandler(handler)
+        lg.setLevel(_log_level)
+        return lg
+
