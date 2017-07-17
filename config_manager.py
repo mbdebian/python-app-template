@@ -100,3 +100,6 @@ class ConfigurationManager:
     def _get_configuration_object(self):
         return self.__configuration_object
 
+    def _get_configuration_file(self):
+        return self.__configuration_file
+
