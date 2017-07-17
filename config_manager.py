@@ -109,4 +109,9 @@ class AppConfigManager(ConfigurationManager):
     """
     Application wide Configuration Manager
     """
-    pass
+
+    # TODO - Constructor
+
+    def get_folder_bin(self):
+        # 'Bin' folder cannot be changed in this version of template
+        return _folder_bin
