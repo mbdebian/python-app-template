@@ -14,7 +14,7 @@ This module implements configuration management for the application
 import os
 # App imports
 from toolbox import general
-from exceptions import AppConfigException
+from exceptions import AppConfigException, ConfigManagerException
 
 # Application defaults - NORMAL OPERATION MODE
 _folder_bin = os.path.abspath('bin')
@@ -90,4 +90,10 @@ class ConfigurationManager:
         else:
             msg = "MISSING configuration key '{}' in configuration file '{}'".format(key, self.__configuration_file)
             raise ConfigManagerException(msg)
+
+    def _get_value_for_key_with_default(self, key, default):
+        if key in self.__configuration_object:
+            return self.__configuration_object[key]
+        else:
+            return default
 
