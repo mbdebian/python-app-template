@@ -157,3 +157,7 @@ class AppConfigManager(ConfigurationManager):
 
     def get_session_id(self):
         return self.__session_id
+
+
+if __name__ == '__main__':
+    print("ERROR: This script is part of a application and it is not meant to be run in stand alone mode")
