@@ -113,5 +113,10 @@ class AppConfigManager(ConfigurationManager):
     # TODO - Constructor
 
     def get_folder_bin(self):
-        # 'Bin' folder cannot be changed in this version of template
+        # 'Bin' folder cannot be changed in this version of the template
         return _folder_bin
+
+    def get_folder_config(self):
+        # Configuration folder cannot be changed in this version of the
+        return _folder_config
+
