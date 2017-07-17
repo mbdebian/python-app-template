@@ -97,3 +97,6 @@ class ConfigurationManager:
         else:
             return default
 
+    def _get_configuration_object(self):
+        return self.__configuration_object
+
