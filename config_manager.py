@@ -117,6 +117,10 @@ class AppConfigManager(ConfigurationManager):
         return _folder_bin
 
     def get_folder_config(self):
-        # Configuration folder cannot be changed in this version of the
+        # Configuration folder cannot be changed in this version of the template
         return _folder_config
+
+    def get_folder_logs(self):
+        # Configuration for logging folder cannot be changed in this version of the template
+        return _folder_logs
 
