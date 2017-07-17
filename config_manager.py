@@ -135,3 +135,5 @@ class AppConfigManager(ConfigurationManager):
     def get_session_working_dir(self):
         return self.__session_working_dir
 
+    def _get_log_handlers(self):
+        return self.__log_handlers
