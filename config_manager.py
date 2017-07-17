@@ -112,6 +112,10 @@ class AppConfigManager(ConfigurationManager):
 
     # TODO - Constructor
 
+    def _get_logger(self):
+        # Get own logger
+        return self.__logger
+
     def get_folder_bin(self):
         # 'Bin' folder cannot be changed in this version of the template
         return _folder_bin
