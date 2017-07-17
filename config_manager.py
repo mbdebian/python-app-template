@@ -80,6 +80,7 @@ class ConfigurationManager:
     This class is a helper class for those submodules having to manage configuration files themselves, that are specific
     to them
     """
+
     def __init__(self, configuration_object, configuration_file):
         self.__configuration_object = configuration_object
         self.__configuration_file = configuration_file
@@ -103,3 +104,9 @@ class ConfigurationManager:
     def _get_configuration_file(self):
         return self.__configuration_file
 
+
+class AppConfigManager(ConfigurationManager):
+    """
+    Application wide Configuration Manager
+    """
+    pass
