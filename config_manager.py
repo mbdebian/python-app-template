@@ -73,3 +73,11 @@ def read_config_from_file(configuration_file):
     except Exception as e:
         msg = "Config file {} could not be read, because {}".format(config_file_path, str(e))
         raise AppConfigException(msg)
+
+
+class ConfigurationManager:
+    """
+    This class is a helper class for those submodules having to manage configuration files themselves, that are specific
+    to them
+    """
+    pass
