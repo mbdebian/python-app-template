@@ -155,3 +155,5 @@ class AppConfigManager(ConfigurationManager):
         lg.setLevel(_log_level)
         return lg
 
+    def get_session_id(self):
+        return self.__session_id
