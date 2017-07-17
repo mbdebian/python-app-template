@@ -116,6 +116,9 @@ class AppConfigManager(ConfigurationManager):
         # Get own logger
         return self.__logger
 
+    def _get_log_handlers(self):
+        return self.__log_handlers
+
     def get_folder_bin(self):
         # 'Bin' folder cannot be changed in this version of the template
         return _folder_bin
@@ -138,9 +141,6 @@ class AppConfigManager(ConfigurationManager):
 
     def get_session_working_dir(self):
         return self.__session_working_dir
-
-    def _get_log_handlers(self):
-        return self.__log_handlers
 
     def get_logger_for(self, name):
         """
