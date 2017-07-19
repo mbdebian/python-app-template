@@ -111,9 +111,10 @@ class AppConfigManager(ConfigurationManager):
     """
 
     def __init__(self, configuration_object, configuration_file):
+        super(AppConfigManager, self).__init__(configuration_object, configuration_file)
         #TODO
         pass
-    
+
     def _get_logger(self):
         # Get own logger
         return self.__logger
