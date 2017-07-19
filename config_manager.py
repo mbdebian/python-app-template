@@ -117,6 +117,8 @@ class AppConfigManager(ConfigurationManager):
         global _logger_formatters
         # Session ID
         self.__session_id = time.strftime('%Y.%m.%d_%H.%M') + "-session"
+        # TODO config, folder_run, etc.
+        self.__session_working_dir = os.path.abspath(os.path.join(self.get_folder_run(), self.get_session_id()))
         #TODO
         pass
 
