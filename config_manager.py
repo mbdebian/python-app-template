@@ -127,6 +127,9 @@ class AppConfigManager(ConfigurationManager):
                             self.get_session_working_dir(),
                             ]
         general.check_create_folders(folders_to_check)
+        # Prepare Logging subsystem
+        if "loglevel" in configuration_object["logger"]:
+            _log_level = configuration_object["logger"]["loglevel"]
         # TODO
 
     def _get_logger(self):
