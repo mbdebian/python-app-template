@@ -114,6 +114,8 @@ class AppConfigManager(ConfigurationManager):
         super(AppConfigManager, self).__init__(configuration_object, configuration_file)
         global _log_level
         global _logger_formatters
+        # Session ID
+        self.__session_id = time.strftime('%Y.%m.%d_%H.%M') + "-" + get_pipeline_name()
         #TODO
         pass
 
