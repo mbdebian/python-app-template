@@ -110,8 +110,10 @@ class AppConfigManager(ConfigurationManager):
     Application wide Configuration Manager
     """
 
-    # TODO - Constructor
-
+    def __init__(self, configuration_object, configuration_file):
+        #TODO
+        pass
+    
     def _get_logger(self):
         # Get own logger
         return self.__logger
