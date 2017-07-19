@@ -119,8 +119,15 @@ class AppConfigManager(ConfigurationManager):
         self.__session_id = time.strftime('%Y.%m.%d_%H.%M') + "-session"
         # TODO config, folder_run, etc.
         self.__session_working_dir = os.path.abspath(os.path.join(self.get_folder_run(), self.get_session_id()))
-        #TODO
-        pass
+        # TODO check and create folders (if needed)
+        folders_to_check = [self.get_folder_bin(),
+                            self.get_folder_logs(),
+                            self.get_folder_resources(),
+                            self.get_folder_run(),
+                            self.get_session_working_dir(),
+                            ]
+        general.check_create_folders(folders_to_check)
+        # TODO
 
     def _get_logger(self):
         # Get own logger
