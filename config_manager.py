@@ -13,6 +13,7 @@ This module implements configuration management for the application
 
 import os
 import time
+import logging
 # App imports
 from toolbox import general
 from exceptions import AppConfigException, ConfigManagerException
@@ -132,7 +133,11 @@ class AppConfigManager(ConfigurationManager):
             _log_level = configuration_object["logger"]["loglevel"]
         if "formatters" in configuration_object["logger"]["formatters"]:
             _logger_formatters = configuration_object["logger"]["formatters"]
-        # TODO
+        self.__log_handlers = []
+        log_handlers_prefix = self.get_session_id() + '-'
+        log_handlers_extension = '.log'
+        self.__logger = logging.getLogger(__name__)
+        self.__logger.setLevel(getattr(logging, _log_level))
 
     def _get_logger(self):
         # Get own logger
