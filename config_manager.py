@@ -57,7 +57,14 @@ __app_config_manager = None
 
 
 def get_app_config_manager():
-    pass
+    """
+    Singleton implementation of the Application Config Manager
+    :return: the Application Configuration Manager
+    """
+    global __app_config_manager
+    if __app_config_manager is None:
+        __app_config_manager = AppConfigManager(read_config_from_file(__configuration_file_name), __configuration_file_name)
+    return __app_config_manager
 
 
 def read_config_from_file(configuration_file):
