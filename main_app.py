@@ -42,9 +42,13 @@ def run_unit_tests():
 
 
 def main():
-    # TODO
-    pass
-
+    app_bootstrap()
+    modules_bootstrap()
+    if __run_test_mode:
+        run_unit_tests()
+    else:
+        # TODO - Implement what to run in normal mode
+        pass
 
 if __name__ == "__main__":
     main()
