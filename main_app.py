@@ -34,3 +34,8 @@ def app_bootstrap():
 def modules_bootstrap():
     # TODO
     pass
+
+
+def run_unit_tests():
+    # TODO
+    pass
