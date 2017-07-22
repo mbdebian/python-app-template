@@ -14,6 +14,8 @@ Application bootstrap script
 import nose
 import argparse
 import unittest
+# Application modules
+import config_manager
 
 
 __DEFAULT_CONFIG_FILE = "config_default.json"
@@ -43,6 +45,10 @@ def app_bootstrap():
     global __run_test_mode
     global __logger
     global __args
+    if __args.config_file:
+        config_manager.set_application_config_file(__args.config_file)
+    else:
+        config_manager.set_application_config_file(__DEFAULT_CONFIG_FILE)
     # TODO
     pass
 
