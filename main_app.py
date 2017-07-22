@@ -24,3 +24,7 @@ __args = None
 def get_cmdl():
     # TODO
     pass
+
+def app_bootstrap():
+    # TODO
+    pass
