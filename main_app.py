@@ -19,3 +19,8 @@ __run_test_mode = False
 __logger = None
 # Command line arguments
 __args = None
+
+
+def get_cmdl():
+    # TODO
+    pass
