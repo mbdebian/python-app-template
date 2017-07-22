@@ -45,10 +45,13 @@ def app_bootstrap():
     global __run_test_mode
     global __logger
     global __args
+    # Initialize configuration module
     if __args.config_file:
         config_manager.set_application_config_file(__args.config_file)
     else:
         config_manager.set_application_config_file(__DEFAULT_CONFIG_FILE)
+    # Request the main logger
+    __logger = config_manager.get_app_config_manager().get_logger_for(__name__)
     # TODO
     pass
 
