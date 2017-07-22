@@ -39,3 +39,8 @@ def modules_bootstrap():
 def run_unit_tests():
     # TODO
     pass
+
+
+def main():
+    # TODO
+    pass
