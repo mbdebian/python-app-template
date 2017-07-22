@@ -17,3 +17,5 @@ __DEFAULT_CONFIG_FILE = "config_default.json"
 __run_test_mode = False
 # Application Logger
 __logger = None
+# Command line arguments
+__args = None
