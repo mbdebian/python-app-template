@@ -15,3 +15,5 @@ __DEFAULT_CONFIG_FILE = "config_default.json"
 
 # Running mode
 __run_test_mode = False
+# Application Logger
+__logger = None
