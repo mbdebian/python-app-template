@@ -12,3 +12,6 @@ Application bootstrap script
 """
 
 __DEFAULT_CONFIG_FILE = "config_default.json"
+
+# Running mode
+__run_test_mode = False
