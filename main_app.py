@@ -12,6 +12,7 @@ Application bootstrap script
 """
 
 import nose
+import argparse
 import unittest
 
 
@@ -26,8 +27,16 @@ __args = None
 
 
 def get_cmdl():
-    # TODO
-    pass
+    cmdl_version = '2017.07.22'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', "--config_file",
+                        help='Application configuration file')
+    parser.add_argument('-v', '--version',
+                        help='display version information',
+                        action='version',
+                        version=cmdl_version + ' %(prog)s ')
+    args = parser.parse_args()
+    return args
 
 
 def app_bootstrap():
