@@ -56,8 +56,13 @@ def app_bootstrap():
         __run_test_mode = True
     # Request the main logger
     __logger = config_manager.get_app_config_manager().get_logger_for(__name__)
-    # TODO
-    pass
+    if __run_test_mode:
+        __logger.info(
+            "Session '{}' STARTED, RUNNING UNIT TESTS".format(config_manager.get_app_config_manager().get_session_id()))
+    else:
+        __logger.info(
+            "Session '{}' STARTED, pipeline '{}'".format(config_manager.get_app_config_manager().get_session_id(),
+                                                         __args.pipeline_name))
 
 
 def modules_bootstrap():
