@@ -40,6 +40,9 @@ def get_cmdl():
 
 
 def app_bootstrap():
+    global __run_test_mode
+    global __logger
+    global __args
     # TODO
     pass
 
