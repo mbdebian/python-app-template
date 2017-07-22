@@ -11,6 +11,10 @@
 Application bootstrap script
 """
 
+import nose
+import unittest
+
+
 __DEFAULT_CONFIG_FILE = "config_default.json"
 
 # Running mode
@@ -37,8 +41,10 @@ def modules_bootstrap():
 
 
 def run_unit_tests():
-    # TODO
-    pass
+    __logger.debug("Running Unit Tests")
+    test_loader = unittest.TestLoader()
+    test_suite = test_loader.discover('.')
+    nose.run(suite=test_suite)
 
 
 def main():
