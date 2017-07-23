@@ -27,6 +27,10 @@ def read_json(json_file="json_file_not_specified.json"):
 
 
 def check_create_folders(folders):
-    #TODO
+    # TODO
     pass
 
+
+def check_create_folders_overwrite(folders):
+    # TODO
+    pass
