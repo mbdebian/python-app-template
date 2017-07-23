@@ -34,3 +34,8 @@ def check_create_folders(folders):
 def check_create_folders_overwrite(folders):
     # TODO
     pass
+
+
+def gunzip_files(files):
+    # TODO
+    pass
