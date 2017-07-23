@@ -114,3 +114,7 @@ def gunzip_files(files):
         else:
             files_with_error.append((file, "it IS NOT A FILE"))
     return files_with_error
+
+
+if __name__ == '__main__':
+    print("ERROR: This script is part of a application and it is not meant to be run in stand alone mode")
