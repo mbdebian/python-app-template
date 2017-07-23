@@ -11,7 +11,10 @@
 Application general toolbox module
 """
 
+import os
 import json
+# App modules
+from exceptions import ToolBoxException
 
 
 def read_json(json_file="json_file_not_specified.json"):
@@ -27,8 +30,15 @@ def read_json(json_file="json_file_not_specified.json"):
 
 
 def check_create_folders(folders):
-    # TODO
-    pass
+    for folder in folders:
+        if not os.path.exists(folder):
+            try:
+                os.mkdir(folder)
+            except Exception as e:
+                raise ToolBoxException(str(e))
+        else:
+            if not os.path.isdir(folder):
+                raise ToolBoxException("'{}' is not a folder".format(folder))
 
 
 def check_create_folders_overwrite(folders):
