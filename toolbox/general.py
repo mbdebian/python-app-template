@@ -24,3 +24,9 @@ def read_json(json_file="json_file_not_specified.json"):
     """
     with open(json_file) as jf:
         return json.load(jf)
+
+
+def check_create_folders(folders):
+    #TODO
+    pass
+
