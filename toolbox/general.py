@@ -31,6 +31,11 @@ def read_json(json_file="json_file_not_specified.json"):
 
 
 def check_create_folders(folders):
+    """
+    Check if folders exist, create them otherwise
+    :param folders: list of folder paths to check
+    :return: no return value
+    """
     for folder in folders:
         if not os.path.exists(folder):
             try:
