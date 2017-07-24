@@ -73,6 +73,11 @@ def check_create_folders_overwrite(folders):
     check_create_folders(folders)
 
 
+def create_latest_symlink(destination_path):
+    symlink_path = os.path.join(os.path.dirname(destination_path), 'latest')
+    os.symlink(destination_path, symlink_path)
+
+
 def gunzip_files(files):
     """
     Given a list of paths for Gzip compressed files, this method will uncompress them, returning a list with the files
