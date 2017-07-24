@@ -85,6 +85,13 @@ def create_latest_symlink(destination_path):
     os.symlink(destination_path, symlink_path)
 
 
+def create_latest_symlink_overwrite(destination_path):
+    symlink_path = os.path.join(os.path.dirname(destination_path), 'latest')
+    if os.path.islink(symlink_path):
+        os.unlink(symlink_path)
+    os.symlink(destination_path, symlink_path)
+
+
 def gunzip_files(files):
     """
     Given a list of paths for Gzip compressed files, this method will uncompress them, returning a list with the files
