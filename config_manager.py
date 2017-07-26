@@ -64,7 +64,8 @@ def get_app_config_manager():
     """
     global __app_config_manager
     if __app_config_manager is None:
-        __app_config_manager = AppConfigManager(read_config_from_file(__configuration_file_name), __configuration_file_name)
+        __app_config_manager = AppConfigManager(read_config_from_file(__configuration_file_name),
+                                                __configuration_file_name)
     return __app_config_manager
 
 
@@ -151,7 +152,8 @@ class AppConfigManager(ConfigurationManager):
         self.__logger.setLevel(getattr(logging, _log_level))
         # TODO fix this code
         for llevel, lformat in _logger_formatters.items():
-            logfile = os.path.join(self.get_folder_logs(), log_handlers_prefix + llevel.lower() + log_handlers_extension)
+            logfile = os.path.join(self.get_folder_logs(),
+                                   log_handlers_prefix + llevel.lower() + log_handlers_extension)
             lformatter = logging.Formatter(lformat)
             lhandler = logging.FileHandler(logfile, mode='w')
             lhandler.setLevel(getattr(logging, llevel))
@@ -208,23 +210,6 @@ class AppConfigManager(ConfigurationManager):
     def get_session_id(self):
         return self.__session_id
 
-    def get_pipelines_module_qualifier(self):
-        return 'pipelines'
-
-    def get_pipeline_factory_instance(self, pipeline_name):
-        fqdn_pipeline_module = "{}.{}".format(self.get_pipelines_module_qualifier(), pipeline_name)
-        self._get_logger().debug("Getting instance of pipeline '{}'".format(fqdn_pipeline_module))
-        instance = None
-        try:
-            # TODO Make sure in the future that only one instance is loaded for every module, although it doesn't really
-            # TODO make sense...
-            instance = importlib.import_module(fqdn_pipeline_module)
-        except Exception as e:
-            self._get_logger().error("Error loading Factory Module for pipeline (FQDN) '{}'"
-                                     .format(fqdn_pipeline_module))
-            # TODO This will return None and everything else will fail, review this in the future for a better strategy
-        return instance
-
-
+    
 if __name__ == '__main__':
     print("ERROR: This script is part of a application and it is not meant to be run in stand alone mode")
