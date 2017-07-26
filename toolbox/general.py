@@ -40,7 +40,7 @@ def check_create_folders(folders):
     for folder in folders:
         if not os.path.exists(folder):
             try:
-                os.mkdir(folder)
+                os.makedirs(folder)
             except Exception as e:
                 raise ToolBoxException(str(e))
         else:
@@ -61,11 +61,43 @@ def check_create_folders_overwrite(folders):
             if not os.path.isdir(folder):
                 invalid_folders.append(folder)
     if invalid_folders:
+        # If there's any invalid folder, we don't make any change, and we report the situation by raising an exception
         raise ToolBoxException("The following folders ARE NOT FOLDERS - '{}'"
                                .format(invalid_folders))
     for folder in folders:
-        shutil.rmtree(folder)
+        try:
+            shutil.rmtree(folder)
+        except FileNotFoundError as e:
+            # It is find if the folder is not there
+            pass
     check_create_folders(folders)
+
+
+def create_latest_symlink(destination_path):
+    """
+    Create a symlink 'latest' to the given destination_path in its parent folder, i.e. if the given path is
+    '/nfs/production/folder', the symlink will be
+            /nfs/production/latest -> /nfs/production/folder
+    :param destination_path: destination path where the symlink will point to
+    :return: no return value
+    """
+    symlink_path = os.path.join(os.path.dirname(destination_path), 'latest')
+    os.symlink(destination_path, symlink_path)
+
+
+def create_latest_symlink_overwrite(destination_path):
+    """
+    Create a symlink 'latest' to the given destination_path in its parent folder, i.e. if the given path is
+    '/nfs/production/folder', the symlink will be
+            /nfs/production/latest -> /nfs/production/folder
+    If there already is a 'latest' symlink, it will be overwritten
+    :param destination_path: destination path where the symlink will point to
+    :return: no return value
+    """
+    symlink_path = os.path.join(os.path.dirname(destination_path), 'latest')
+    if os.path.islink(symlink_path):
+        os.unlink(symlink_path)
+    os.symlink(destination_path, symlink_path)
 
 
 def gunzip_files(files):
