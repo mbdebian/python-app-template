@@ -208,6 +208,9 @@ class AppConfigManager(ConfigurationManager):
     def get_session_id(self):
         return self.__session_id
 
+    def get_pipelines_module_qualifier(self):
+        return 'pipelines'
+
     def get_pipeline_factory_instance(self, pipeline_name):
         self._get_logger().debug("Getting instance of pipeline '{}'".format(pipeline_name))
 
