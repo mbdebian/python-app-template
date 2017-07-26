@@ -214,6 +214,14 @@ class AppConfigManager(ConfigurationManager):
     def get_pipeline_factory_instance(self, pipeline_name):
         fqdn_pipeline_module = "{}.{}".format(self.get_pipelines_module_qualifier(), pipeline_name)
         self._get_logger().debug("Getting instance of pipeline '{}'".format(fqdn_pipeline_module))
+        instance = None
+        try:
+            instance = importlib.import_module(fqdn_pipeline_module)
+        except Exception as e:
+            pass
+        else:
+            pass
+        return instance
 
 
 if __name__ == '__main__':
