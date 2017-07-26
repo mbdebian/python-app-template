@@ -14,6 +14,7 @@ This module implements configuration management for the application
 import os
 import time
 import logging
+import importlib
 # App imports
 from toolbox import general
 from exceptions import AppConfigException, ConfigManagerException
@@ -208,8 +209,7 @@ class AppConfigManager(ConfigurationManager):
         return self.__session_id
 
     def get_pipeline_factory_instance(self, pipeline_name):
-        # TODO
-        pass
+        self._get_logger().debug("Getting instance of pipeline '{}'".format(pipeline_name))
 
 
 if __name__ == '__main__':
