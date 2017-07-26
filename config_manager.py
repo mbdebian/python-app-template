@@ -216,6 +216,8 @@ class AppConfigManager(ConfigurationManager):
         self._get_logger().debug("Getting instance of pipeline '{}'".format(fqdn_pipeline_module))
         instance = None
         try:
+            # TODO Make sure in the future that only one instance is loaded for every module, although it doesn't really
+            # TODO make sense...
             instance = importlib.import_module(fqdn_pipeline_module)
         except Exception as e:
             self._get_logger().error("Error loading Factory Module for pipeline (FQDN) '{}'"
