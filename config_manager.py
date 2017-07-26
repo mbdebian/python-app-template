@@ -212,6 +212,7 @@ class AppConfigManager(ConfigurationManager):
         return 'pipelines'
 
     def get_pipeline_factory_instance(self, pipeline_name):
+        fqdn_pipeline_module = "{}.{}".format(self.get_pipelines_module_qualifier(), pipeline_name)
         self._get_logger().debug("Getting instance of pipeline '{}'".format(pipeline_name))
 
 
