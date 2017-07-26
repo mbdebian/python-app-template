@@ -12,7 +12,7 @@ update_requirements_file: dev_environment
 	@python_install/bin/pipreqs --use-local --savepath requirements.txt $(PWD)
 
 tests: dev_environment
-	@python_install/bin/python main_app.py test
+	@python_install/bin/python main_app.py -t
 
 clean_dev:
 	@rm -rf python_install
