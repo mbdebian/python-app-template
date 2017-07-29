@@ -15,7 +15,10 @@ import requests
 
 
 def make_rest_request(url):
-    pass
+    response = requests.get(url, headers={"Content-Type": "application/json"})
+    if not response.ok:
+        response.raise_for_status()
+    return response.json()
 
 
 if __name__ == '__main__':
