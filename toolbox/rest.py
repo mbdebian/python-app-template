@@ -10,3 +10,5 @@
 """
 Some useful helpers for dealing with RESTful web services
 """
+
+import requests
