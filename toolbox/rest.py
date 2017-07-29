@@ -8,5 +8,5 @@
 # 
 
 """
-Document your module here
+Some useful helpers for dealing with RESTful web services
 """
