@@ -17,3 +17,8 @@ from exceptions import AppException
 class ManagerException(AppException):
     def __init__(self, value):
         super(ManagerException, self).__init__(value)
+
+
+class AgentException(AppException):
+    def __init__(self, value):
+        super(AgentException, self).__init__(value)
