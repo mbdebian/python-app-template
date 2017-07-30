@@ -10,3 +10,5 @@
 """
 Exceptions related to the download manager
 """
+
+from exceptions import AppException
