@@ -32,6 +32,8 @@ class Agent(threading.Thread):
         self.__stderr = b' '
         # Result object
         self.__result = {'msg': '', 'success': True, 'url': str(self.__download_url)}
+        # Seed random module
+        random.seed(time.time())
 
 
 class Manager:
