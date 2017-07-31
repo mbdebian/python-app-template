@@ -30,6 +30,8 @@ class Agent(threading.Thread):
         # Prepare standard output and error output
         self.__stdout = b' '
         self.__stderr = b' '
+        # Result object
+        self.__result = {'msg': '', 'success': True, 'url': str(self.__download_url)}
 
 
 class Manager:
