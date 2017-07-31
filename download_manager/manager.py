@@ -19,3 +19,7 @@ import subprocess
 
 class Agent(threading.Thread):
     pass
+
+
+class Manager:
+    pass
