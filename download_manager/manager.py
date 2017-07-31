@@ -59,6 +59,9 @@ class Agent(threading.Thread):
         """
         return self.__result
 
+    def get_dst_folder(self):
+        return self.__dst_folder
+
 
 class Manager:
     pass
