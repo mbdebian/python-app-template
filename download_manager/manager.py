@@ -166,6 +166,10 @@ class Agent(threading.Thread):
                                        self.get_download_attempts()),
                                False)
 
+    def cancel(self):
+        self.alive = False
+        self.join()
+
     def get_result(self):
         """
         Get the result object built by this Agent.
