@@ -68,6 +68,8 @@ class Agent(threading.Thread):
     def get_download_url(self):
         return self.__download_url
 
+    def get_timeout_attempts(self):
+        return self.__timeout_attempts
 
 
 class Manager:
