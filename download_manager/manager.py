@@ -37,6 +37,10 @@ class Agent(threading.Thread):
         # We have everything we need, auto-start the thread
         self.start()
 
+    def _build_result(self, msg, success=True):
+        self.__result['msg'] = self.__result['msg'] + "\n" + msg
+        self.__result['success'] = self.__result['success'] and success
+
 
 class Manager:
     pass
