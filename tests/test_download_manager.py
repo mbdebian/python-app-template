@@ -26,6 +26,9 @@ class TestDownloadManager(unittest.TestCase):
                 'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.abinitio.gtf.gz',
                 'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.chr.gtf.gz']
         destination_folder = config_manager.get_app_config_manager().get_session_working_dir()
+        # Log the test environment
+        self.__logger.info("Sample file URLs to download: {}".format(",".join(urls)))
+        self.__logger.info("Destination folder for the downloads, '{}'".format(destination_folder))
 
 
 if __name__ == '__main__':
