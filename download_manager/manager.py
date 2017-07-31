@@ -175,6 +175,10 @@ class Agent(threading.Thread):
         self.alive = False
         self.join()
 
+    def wait(self):
+        self.join()
+        return self.get_result()
+
     def get_result(self):
         """
         Get the result object built by this Agent.
