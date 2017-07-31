@@ -104,6 +104,26 @@ class Agent(threading.Thread):
             return False
         return True
 
+    def __download_with_timeout_attempts(self):
+        timeout_attempt_counter = 0
+        while timeout_attempt_counter < self.get_timeout_attempts():
+            self._build_result("Downloading '{}', timeout attempt #{} out of #{}"
+                               .format(self.get_download_url(),
+                                       timeout_attempt_counter,
+                                       self.get_timeout_attempts()))
+            timeout_attempt_counter += 1
+            try:
+                return self.__download_with_timeout()
+            except subprocess.TimeoutExpired as exception_download_timeout:
+                self._build_result("Download of '{}' TIMED OUT, timeout attempt #{} out of #{}"
+                                   .format(self.get_download_url(),
+                                           timeout_attempt_counter,
+                                           self.get_timeout_attempts()))
+                # wait for a random amount of time before retrying the download
+                # WARNING! - MAGIC NUMBER AHEAD!!!
+                time.sleep(random.randint(0, 60))
+        return False
+
     def get_result(self):
         """
         Get the result object built by this Agent.
