@@ -27,6 +27,9 @@ class Agent(threading.Thread):
         self.__download_timeout = download_timeout
         # Compute destination file name, using the same file name as in the given URL
         self.__dst_filename = url[url.rfind("/") + 1:]
+        # Prepare standard output and error output
+        self.__stdout = b' '
+        self.__stderr = b' '
 
 
 class Manager:
