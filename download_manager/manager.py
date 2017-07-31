@@ -129,6 +129,10 @@ class Agent(threading.Thread):
         return False
 
     def run(self):
+        """
+        This is the main thread for the download agent
+        :return: no value is returned
+        """
         # TODO - Validate URL
         attempt_counter = 0
         download_completion = False
