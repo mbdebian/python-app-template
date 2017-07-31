@@ -29,6 +29,10 @@ class TestDownloadManager(unittest.TestCase):
         # Log the test environment
         self.__logger.info("Sample file URLs to download: {}".format(",".join(urls)))
         self.__logger.info("Destination folder for the downloads, '{}'".format(destination_folder))
+        # Get the download manager and start the downloads
+        download_manager = DownloadManager(urls, destination_folder, self.__logger)
+        download_manager.start_downloads()
+        download_manager.wait_all()
 
 
 if __name__ == '__main__':
