@@ -282,3 +282,6 @@ class Manager:
     def get_download_timeout(self):
         return self.__download_timeout
 
+
+if __name__ == '__main__':
+    print("ERROR: This script is part of a application and it is not meant to be run in stand alone mode")
