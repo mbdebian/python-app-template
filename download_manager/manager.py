@@ -15,3 +15,7 @@ import time
 import random
 import threading
 import subprocess
+
+
+class Agent(threading.Thread):
+    pass
