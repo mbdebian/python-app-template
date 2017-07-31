@@ -209,4 +209,13 @@ class Agent(threading.Thread):
 
 
 class Manager:
-    pass
+    def __init__(self, urls, download_destination_folder, logger, download_attempts=32, timeout_attempts=3,
+                 download_timeout=120):
+        self.__urls = urls
+        self.__download_destination_folder = download_destination_folder
+        self.__logger = logger
+        self.__download_attempts = download_attempts
+        self.__timeout_attempts = timeout_attempts
+        self.__download_timeout = download_timeout
+        self.__agents = {}
+        self.__success = True
