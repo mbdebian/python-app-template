@@ -15,3 +15,7 @@ import unittest
 # App imports
 import config_manager
 from download_manager.manager import Manager as DownloadManager
+
+
+class TestDownloadManager(unittest.TestCase):
+    pass
