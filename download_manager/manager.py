@@ -219,3 +219,7 @@ class Manager:
         self.__download_timeout = download_timeout
         self.__agents = {}
         self.__success = True
+
+    def __add_agent_for_url(self, url, agent):
+        self.__agents[url] = agent
+
