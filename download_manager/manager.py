@@ -223,3 +223,5 @@ class Manager:
     def __add_agent_for_url(self, url, agent):
         self.__agents[url] = agent
 
+    def __get_count_of_running_agents(self):
+        return len(self.__agents)
