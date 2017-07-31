@@ -62,6 +62,9 @@ class Agent(threading.Thread):
     def get_dst_folder(self):
         return self.__dst_folder
 
+    def get_download_timeout(self):
+        return self.__download_timeout
+
 
 class Manager:
     pass
