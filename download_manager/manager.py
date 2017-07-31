@@ -233,3 +233,6 @@ class Manager:
         self.__success = self.__success and True
         return self.__success
 
+    def __set_fail(self):
+        self.__success = self.__success and False
+        return self.__success
