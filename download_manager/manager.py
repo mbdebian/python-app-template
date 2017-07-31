@@ -273,4 +273,6 @@ class Manager:
     def get_download_destination_folder(self):
         return self.__download_destination_folder
 
+    def get_download_attempts(self):
+        return self.__download_attempts
 
