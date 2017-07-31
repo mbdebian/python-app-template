@@ -50,6 +50,9 @@ class Agent(threading.Thread):
         self.__result['msg'] = self.__result['msg'] + "\n" + msg
         self.__result['success'] = self.__result['success'] and success
 
+    def get_result(self):
+        return self.__result
+
 
 class Manager:
     pass
