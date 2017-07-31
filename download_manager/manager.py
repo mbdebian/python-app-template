@@ -50,6 +50,54 @@ class Agent(threading.Thread):
         self.__result['msg'] = self.__result['msg'] + "\n" + msg
         self.__result['success'] = self.__result['success'] and success
 
+    def __download_with_timeout(self):
+        download_command = "cd " + str(self.get_dst_folder()) + "; curl -L -O -C - " + str(self.get_download_url())
+        download_subprocess = subprocess.Popen(download_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                               shell=True)
+        stdout = b' '
+        stderr = b' '
+        try:
+            self._build_result("Downloading '{}' with timeout set to {} seconds"
+                               .format(self.get_download_url(),
+                                       self.get_download_timeout()))
+            (stdout, stderr) = download_subprocess.communicate(timeout=self.get_download_timeout())
+        except subprocess.TimeoutExpired as exception_download_timeout:
+            self._build_result("Timeout ({} seconds) ERROR downloading '{}', STDOUT: |||> {} <|||, STDERR XXX> {} <XXX"
+                               .format(self.get_download_timeout(),
+                                       self.get_download_url(),
+                                       stdout.decode('utf8'),
+                                       stderr.decode('utf8')))
+            raise
+        # Let's check the result from downloading the file
+        if download_subprocess.poll() is not None:
+            if download_subprocess.returncode != 0:
+                # ERROR
+                self._build_result("ERROR downloading '{}', STDOUT: |||> {} <|||, STDERR XXX> {} <XXX"
+                                   .format(self.get_download_timeout(),
+                                           self.get_download_url(),
+                                           stdout.decode('utf8'),
+                                           stderr.decode('utf8')))
+                return False
+            # SUCCESS
+            self._build_result("SUCCESSFUL download for '{}', STDOUT: |||> {} <|||, STDERR XXX> {} <XXX"
+                               .format(self.get_download_timeout(),
+                                       self.get_download_url(),
+                                       stdout.decode('utf8'),
+                                       stderr.decode('utf8')))
+        else:
+            # TODO
+            # The child process is still running, and this is weird stuff because we are using a timeout parameter, we
+            # should never reach this part of the code
+            self._build_result("WEIRD DOWNLOAD - THE SUBPROCESS IS STILL RUNNING FOR '{}' DESPITE THE TIME OUT "
+                               "PARAMETER, STDOUT: |||> {} <|||, STDERR XXX> {} <XXX"
+                               .format(self.get_download_timeout(),
+                                       self.get_download_url(),
+                                       stdout.decode('utf8'),
+                                       stderr.decode('utf8')))
+            download_subprocess.kill()
+            return False
+        return True
+
     def get_result(self):
         """
         Get the result object built by this Agent.
