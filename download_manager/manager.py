@@ -51,6 +51,12 @@ class Agent(threading.Thread):
         self.__result['success'] = self.__result['success'] and success
 
     def get_result(self):
+        """
+        Get the result object built by this Agent.
+
+        This method should be called when the agent finishes its job, but not in the middle of it.
+        :return: result object with information on the finished download process
+        """
         return self.__result
 
 
