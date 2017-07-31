@@ -33,6 +33,7 @@ class TestDownloadManager(unittest.TestCase):
         download_manager = DownloadManager(urls, destination_folder, self.__logger)
         download_manager.start_downloads()
         download_manager.wait_all()
+        self.assertTrue(download_manager.is_success(), "Files downloaded successfully")
 
 
 if __name__ == '__main__':
