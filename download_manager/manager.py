@@ -65,6 +65,10 @@ class Agent(threading.Thread):
     def get_download_timeout(self):
         return self.__download_timeout
 
+    def get_download_url(self):
+        return self.__download_url
+
+
 
 class Manager:
     pass
