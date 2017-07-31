@@ -18,4 +18,4 @@ from download_manager.manager import Manager as DownloadManager
 
 
 class TestDownloadManager(unittest.TestCase):
-    pass
+    __logger = config_manager.get_app_config_manager().get_logger_for(__name__)
