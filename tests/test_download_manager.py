@@ -25,6 +25,7 @@ class TestDownloadManager(unittest.TestCase):
                 'ftp://ftp.ensembl.org/pub/release-89/fasta/homo_sapiens/pep/Homo_sapiens.GRCh38.pep.abinitio.fa.gz',
                 'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.abinitio.gtf.gz',
                 'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.chr.gtf.gz']
+        destination_folder = config_manager.get_app_config_manager().get_session_working_dir()
 
 
 if __name__ == '__main__':
