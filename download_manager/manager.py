@@ -225,3 +225,6 @@ class Manager:
 
     def __get_count_of_running_agents(self):
         return len(self.__agents)
+
+    def __get_agent_entries(self):
+        return [(url, self.__agents[url]) for url in self.__agents]
