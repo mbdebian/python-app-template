@@ -279,3 +279,6 @@ class Manager:
     def get_timeout_attempts(self):
         return self.__timeout_attempts
 
+    def get_download_timeout(self):
+        return self.__download_timeout
+
