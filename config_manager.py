@@ -76,7 +76,7 @@ def read_config_from_file(configuration_file):
     :param configuration_file: file name or absolute path for the file that contains the configuration information
     :return: an object representation of the json formatted configuration information read from the file
     """
-    if (configuration_file is None):
+    if configuration_file is None:
         # If there is no configuration file, we return an empty configuration object
         return {}
     config_file_path = configuration_file
