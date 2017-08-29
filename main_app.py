@@ -34,7 +34,7 @@ def get_cmdl():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', "--config_file",
                         help='Application configuration file')
-    parser.add_argument('-r', '--runtests',
+    parser.add_argument('-t', '--test',
                         help='run unit tests',
                         action='store_true')
     parser.add_argument('-v', '--version',
@@ -55,7 +55,7 @@ def app_bootstrap():
         config_manager.set_application_config_file(__args.config_file)
     else:
         config_manager.set_application_config_file(__DEFAULT_CONFIG_FILE)
-    if __args.runtests:
+    if __args.test:
         __run_test_mode = True
     # Request the main logger
     __logger = config_manager.get_app_config_manager().get_logger_for(__name__)
