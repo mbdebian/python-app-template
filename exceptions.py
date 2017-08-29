@@ -22,7 +22,7 @@ class AppException(Exception):
 
 class AppConfigException(AppException):
     def __init__(self, value):
-        super(AppConfigException, self).__init__(value)
+        super().__init__(value)
 
 
 class ConfigManagerException(Exception):
