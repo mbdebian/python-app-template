@@ -32,11 +32,10 @@ def get_cmdl():
     global __args
     cmdl_version = '2017.07.22'
     parser = argparse.ArgumentParser()
+    parser.add_argument('--test', dest='test', action='store_const',
+                    const=True, default=False, help='Run unit tests')
     parser.add_argument('-c', "--config_file",
                         help='Application configuration file')
-    parser.add_argument('-t', '--test',
-                        help='run unit tests',
-                        action='store_true')
     parser.add_argument('-v', '--version',
                         help='display version information',
                         action='version',
