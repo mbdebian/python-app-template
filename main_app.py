@@ -39,7 +39,8 @@ def get_cmdl():
                         action='version',
                         version=cmdl_version + ' %(prog)s ')
     parser.add_argument('-t', '--test',
-                        help='run unit tests')
+                        help='run unit tests',
+                        action='store_true')
     args = parser.parse_args()
     return args
 
