@@ -29,6 +29,7 @@ __args = None
 
 
 def get_cmdl():
+    global __args
     cmdl_version = '2017.07.22'
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', "--config_file",
