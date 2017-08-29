@@ -40,14 +40,15 @@ def get_cmdl():
                         version=cmdl_version + ' %(prog)s ')
     parser.add_argument('-t', '--test',
                         help='run unit tests')
-    __args = parser.parse_args()
-    return __args
+    args = parser.parse_args()
+    return args
 
 
 def app_bootstrap():
     global __run_test_mode
     global __logger
     global __args
+    __args = get_cmdl()
     # Initialize configuration module
     if __args.config_file:
         config_manager.set_application_config_file(__args.config_file)
