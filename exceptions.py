@@ -36,7 +36,7 @@ class ConfigManagerException(Exception):
 
 class ToolBoxException(AppException):
     def __init__(self, value):
-        super(ToolBoxException, self).__init__(value)
+        super().__init__(value)
 
 
 if __name__ == '__main__':
