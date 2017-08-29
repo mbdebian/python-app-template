@@ -40,8 +40,8 @@ def get_cmdl():
                         version=cmdl_version + ' %(prog)s ')
     parser.add_argument('-t', '--test',
                         help='run unit tests')
-    args = parser.parse_args()
-    return args
+    __args = parser.parse_args()
+    return __args
 
 
 def app_bootstrap():
