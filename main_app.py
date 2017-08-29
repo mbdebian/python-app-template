@@ -63,8 +63,7 @@ def app_bootstrap():
             "Session '{}' STARTED, RUNNING UNIT TESTS".format(config_manager.get_app_config_manager().get_session_id()))
     else:
         __logger.info(
-            "Session '{}' STARTED, pipeline '{}'".format(config_manager.get_app_config_manager().get_session_id(),
-                                                         __args.pipeline_name))
+            "Session '{}' STARTED".format(config_manager.get_app_config_manager().get_session_id()))
 
 
 def modules_bootstrap():
