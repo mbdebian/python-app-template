@@ -189,7 +189,7 @@ class AppConfigManager(ConfigurationManager):
 
     def get_folder_run(self):
         # Configuration for 'run' folder cannot be changed in this version of the template
-        return _folder_run
+        return os.path.abspath(_folder_run)
 
     def get_session_working_dir(self):
         return self.__session_working_dir
