@@ -159,12 +159,8 @@ class AppConfigManager(ConfigurationManager):
             self.__log_handlers.append(lhandler)
             # Add the handlers to my own logger
             self._logger.addHandler(lhandler)
-        self._get_logger().debug("Logging system initialized")
+        self._logger.debug("Logging system initialized")
         # TODO to be completed
-
-    def _get_logger(self):
-        # Get own logger
-        return self._logger
 
     def _get_log_handlers(self):
         return self.__log_handlers
@@ -198,7 +194,7 @@ class AppConfigManager(ConfigurationManager):
         :param name: name to be used in the logger
         :return: a new logger on that name
         """
-        self._get_logger().debug("Creating logger with name {}".format(name))
+        self._logger.debug("Creating logger with name {}".format(name))
         lg = logging.getLogger(name)
         for handler in self._get_log_handlers():
             lg.addHandler(handler)
