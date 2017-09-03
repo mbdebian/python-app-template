@@ -123,7 +123,7 @@ class AppConfigManager(ConfigurationManager):
     """
 
     def __init__(self, configuration_object, configuration_file):
-        super(AppConfigManager, self).__init__(configuration_object, configuration_file)
+        super().__init__(configuration_object, configuration_file)
         global _log_level
         global _logger_formatters
         # Session ID
