@@ -146,7 +146,7 @@ class AppConfigManager(ConfigurationManager):
         self.__log_handlers = []
         log_handlers_prefix = self.get_session_id() + '-'
         log_handlers_extension = '.log'
-        self.__logger = logging.getLogger(__name__)
+        self.__logger = logging.getLogger("{}.{}".format(__name__, type(self).__name__))
         self.__logger.setLevel(getattr(logging, _log_level))
         # TODO fix this code
         for llevel, lformat in _logger_formatters.items():
