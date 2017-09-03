@@ -29,6 +29,8 @@ _folder_run = os.path.abspath('run')
 
 # Configuration file name
 __configuration_file_name = None
+# Configuration Singleton
+__app_config_manager = None
 
 # Logging defaults
 _logger_formatters = {
@@ -51,10 +53,6 @@ def set_application_config_file(configuration_file):
         raise AppConfigException(
             "Configuration file can't be changed once an initial configuartion file has been provided")
     __configuration_file_name = configuration_file
-
-
-# Configuration Singleton
-__app_config_manager = None
 
 
 def get_app_config_manager():
