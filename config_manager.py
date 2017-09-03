@@ -146,8 +146,8 @@ class AppConfigManager(ConfigurationManager):
         self.__log_handlers = []
         log_handlers_prefix = self.get_session_id() + '-'
         log_handlers_extension = '.log'
-        self.__logger = logging.getLogger("{}.{}".format(__name__, type(self).__name__))
-        self.__logger.setLevel(getattr(logging, _log_level))
+        self._logger = logging.getLogger("{}.{}".format(__name__, type(self).__name__))
+        self._logger.setLevel(getattr(logging, _log_level))
         # TODO fix this code
         for llevel, lformat in _logger_formatters.items():
             logfile = os.path.join(self.get_folder_logs(),
@@ -158,13 +158,13 @@ class AppConfigManager(ConfigurationManager):
             lhandler.setFormatter(lformatter)
             self.__log_handlers.append(lhandler)
             # Add the handlers to my own logger
-            self.__logger.addHandler(lhandler)
+            self._logger.addHandler(lhandler)
         self._get_logger().debug("Logging system initialized")
         # TODO to be completed
 
     def _get_logger(self):
         # Get own logger
-        return self.__logger
+        return self._logger
 
     def _get_log_handlers(self):
         return self.__log_handlers
