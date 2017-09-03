@@ -237,12 +237,9 @@ class Manager:
         self.__success = self.__success and False
         return self.__success
 
-    def _get_logger(self):
-        return self.__logger
-
     def start_downloads(self):
         for url in self.get_urls_to_download():
-            self._get_logger().debug("Launching download agent for URL '{}'".format(url))
+            self.__logger.debug("Launching download agent for URL '{}'".format(url))
             self.__add_agent_for_url(url,
                                      Agent(url,
                                            self.get_download_destination_folder(),
@@ -251,16 +248,16 @@ class Manager:
                                            download_timeout=self.get_download_timeout()))
 
     def wait_all(self):
-        self._get_logger().debug("Waiting for #{} download agents to finish"
+        self.__logger.debug("Waiting for #{} download agents to finish"
                                  .format(self.__get_count_of_running_agents()))
         for (url, agent) in self.__get_agent_entries():
-            self._get_logger().debug("Checking on Download Agent for '{}'".format(url))
+            self.__logger.debug("Checking on Download Agent for '{}'".format(url))
             result = agent.wait()
             if result['success']:
-                self._get_logger().debug(result['msg'])
+                self.__logger.debug(result['msg'])
                 self.__set_success()
             else:
-                self._get_logger().error(result['msg'])
+                self.__logger.error(result['msg'])
                 self.__set_fail()
         self.__set_success()
 
