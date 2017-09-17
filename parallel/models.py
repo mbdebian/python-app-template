@@ -107,3 +107,9 @@ class CommandLineRunnerAsThread(CommandLineRunner):
         try:
             self._stdout, self._stderr = command_subprocess.communicate(timeout=self.timeout)
         except subprocess.TimeoutExpired as e:
+            command_subprocess.kill()
+            raise CommandLineRunnerAsThreadException("Communicating with subprocess for command '{}', "
+                                                     "current working directory at '{}', "
+                                                     "timeout '{}s'".format(self.command,
+                                                                            self.current_working_directory,
+                                                                            self.timeout)) from e
