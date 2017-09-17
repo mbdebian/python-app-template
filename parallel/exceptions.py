@@ -30,3 +30,8 @@ class ParallelRunnerException(AppException):
         super().__init__(value)
 
 
+class CommandLineRunnerException(ParallelRunnerException):
+    def __init__(self, value):
+        super().__init__(value)
+
+
