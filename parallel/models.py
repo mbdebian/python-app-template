@@ -69,3 +69,15 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
 
 
 class CommandLineRunner(ParallelRunner):
+    def __init__(self):
+        super().__init__()
+        self._logger = config_manager \
+            .get_app_config_manager() \
+            .get_logger_for("{}.{}".format(__name__, type(self).__name__))
+        self.command = None
+        self.command_success = False
+        self.command_return_code = 0
+        self.timeout = None
+        self.current_working_directory = None
+
+
