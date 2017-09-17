@@ -109,6 +109,8 @@ class ParallelRunnerManager:
     def get_alive_runners(self):
         return set(self.__alive_runners)
 
+    def get_finished_runners(self):
+        return set(self.__finished_runners)
 
 
 # Parallel Runners
