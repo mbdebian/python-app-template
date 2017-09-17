@@ -81,3 +81,4 @@ class CommandLineRunner(ParallelRunner):
         self.current_working_directory = None
 
 
+class CommandLineRunnerAsThread(CommandLineRunner):
