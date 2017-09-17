@@ -50,6 +50,14 @@ class ParallelRunnerManagerFactory:
 
 # Parallel Runner Managers
 class ParallelRunnerManager:
+    def __init__(self):
+        self._logger = config_manager \
+            .get_app_config_manager() \
+            .get_logger_for("{}.{}".format(__name__, type(self).__name__))
+        self.__runners = set()
+        self.__alive_runners = set()
+        self.__finished_runners = set()
+
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
