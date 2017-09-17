@@ -103,6 +103,9 @@ class ParallelRunnerManager:
         except NoMoreAliveRunnersException as e:
             self._logger.debug("All runners are (should be) finished")
 
+    def get_not_started_runners(self):
+        return set(self.__runners)
+
 
 
 # Parallel Runners
