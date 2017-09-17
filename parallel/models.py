@@ -22,6 +22,7 @@ from .exceptions import ParallelRunnerException, CommandLineRunnerAsThreadExcept
 
 
 # Abstract Factories
+class CommandLineRunnerFactory:
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
