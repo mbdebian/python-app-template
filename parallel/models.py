@@ -19,3 +19,6 @@ import subprocess
 # App imports
 import config_manager
 from .exceptions import ParallelRunnerException, CommandLineRunnerAsThreadException, NoMoreAliveRunnersException
+
+
+class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
