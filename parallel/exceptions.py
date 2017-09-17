@@ -10,3 +10,8 @@
 """
 Exceptions related to this parallelization module
 """
+
+# App imports
+from exceptions import AppException
+
+
