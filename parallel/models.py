@@ -52,3 +52,4 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         self._logger.debug("--- WAIT ---")
         self.join()
 
+    def get_stdout(self):
