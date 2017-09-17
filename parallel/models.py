@@ -95,6 +95,14 @@ class ParallelRunnerManager:
             counter += 1
         return runner_found
 
+    def wait_all(self):
+        self._logger.debug("Waiting for all #{} runners to finish".format(len(self.__alive_runners)))
+        try:
+            while True:
+                self.get_next_finished_runner()
+        except NoMoreAliveRunnersException as e:
+            self._logger.debug("All runners are (should be) finished")
+
 
 
 # Parallel Runners
