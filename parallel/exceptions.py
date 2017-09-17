@@ -46,4 +46,4 @@ class CommandLineRunnerOnHpcException(CommandLineRunnerException):
 
 
 if __name__ == '__main__':
-    print("ERROR: This script is part of a pipeline collection and it is not meant to be run in stand alone mode")
+    print("ERROR: This script is part of an application and it is not meant to be run in stand alone mode")
