@@ -64,6 +64,7 @@ class ParallelRunnerManager:
     def add_runner(self, runner):
         self.__runners.add(runner)
 
+    def start_runners(self):
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
