@@ -72,8 +72,10 @@ class ParallelRunnerManager:
         self._logger.debug("Runners started, clearing out the runners container")
         self.__runners.clear()
 
-    def wait_all(self):
+    def get_next_finished_runner(self):
 
+
+# Parallel Runners
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
         super().__init__()
