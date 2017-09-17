@@ -118,3 +118,11 @@ class CommandLineRunnerAsThread(CommandLineRunner):
                            "timeout '{}s'".format(self.command,
                                                   self.current_working_directory,
                                                   self.timeout))
+        if command_subprocess.poll() and (command_subprocess.returncode != 0):
+            self.command_return_code = command_subprocess.returncode
+            raise CommandLineRunnerAsThreadException("ERROR - Return Code '{}' for command '{}', "
+                                                     "current working directory at '{}', "
+                                                     "timeout '{}s'".format(command_subprocess.returncode,
+                                                                            self.command,
+                                                                            self.current_working_directory,
+                                                                            self.timeout))
