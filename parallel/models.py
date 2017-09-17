@@ -41,6 +41,7 @@ class CommandLineRunnerFactory:
         return CommandLineRunnerOnHpc()
 
 
+class ParallelRunnerManagerFactory:
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
