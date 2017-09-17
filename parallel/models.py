@@ -82,3 +82,9 @@ class CommandLineRunner(ParallelRunner):
 
 
 class CommandLineRunnerAsThread(CommandLineRunner):
+    def __init__(self):
+        super().__init__()
+        self._logger = config_manager \
+            .get_app_config_manager() \
+            .get_logger_for("{}.{}-{}".format(__name__, type(self).__name__, threading.current_thread().getName()))
+
