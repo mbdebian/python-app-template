@@ -48,3 +48,4 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         self._shutdown = True
         self._stop()
 
+    def wait(self):
