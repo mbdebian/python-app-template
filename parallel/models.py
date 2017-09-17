@@ -32,3 +32,7 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         self._done = False
         self._shutdown = False
 
+    @abc.abstractmethod
+    def _run(self):
+        ...
+
