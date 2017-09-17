@@ -64,3 +64,5 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
             raise ParallelRunnerException("Runner is NOT DONE doing its job, thus 'stderr' is NOT AVAILABLE")
         return self._stderr
 
+    def is_done(self):
+        return self._done
