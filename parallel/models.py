@@ -43,3 +43,4 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         finally:
             self._done = True
 
+    def cancel(self):
