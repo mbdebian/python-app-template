@@ -36,3 +36,10 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def _run(self):
         ...
 
+    def run(self):
+        self._logger.debug("--- START ---")
+        try:
+            self._run()
+        finally:
+            self._done = True
+
