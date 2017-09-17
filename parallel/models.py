@@ -58,3 +58,4 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
             raise ParallelRunnerException("Runner is NOT DONE doing its job, thus 'stdout' is NOT AVAILABLE")
         return self._stdout
 
+    def get_stderr(self):
