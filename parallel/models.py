@@ -42,6 +42,14 @@ class CommandLineRunnerFactory:
 
 
 class ParallelRunnerManagerFactory:
+    @staticmethod
+    def get_parallel_runner_manager():
+        # TODO - This factory is creating only one kind of Parallel Runner Manager, more complex ones to come ...
+        return ParallelRunnerManager()
+
+
+# Parallel Runner Managers
+class ParallelRunnerManager:
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
