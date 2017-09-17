@@ -66,3 +66,6 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
 
     def is_done(self):
         return self._done
+
+
+class CommandLineRunner(ParallelRunner):
