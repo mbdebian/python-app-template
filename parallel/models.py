@@ -21,6 +21,8 @@ import config_manager
 from .exceptions import ParallelRunnerException, CommandLineRunnerAsThreadException, NoMoreAliveRunnersException
 
 
+# Abstract Factories
+
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
         super().__init__()
