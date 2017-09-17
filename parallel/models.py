@@ -36,6 +36,12 @@ class CommandLineRunnerFactory:
     def get_multithread_command_line_runner():
         return CommandLineRunnerAsThread()
 
+    @staticmethod
+    def get_hpc_command_line_runner():
+        return CommandLineRunnerOnHpc()
+
+
+
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
         super().__init__()
