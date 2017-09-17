@@ -135,3 +135,4 @@ class CommandLineRunnerAsThread(CommandLineRunner):
         self.command_success = True
 
 
+class CommandLineRunnerOnHpc(CommandLineRunner):
