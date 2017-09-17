@@ -65,6 +65,13 @@ class ParallelRunnerManager:
         self.__runners.add(runner)
 
     def start_runners(self):
+        self._logger.debug("Starting #{} Runners".format(len(self.__runners)))
+        for runner in self.__runners:
+            runner.start()
+            self.__alive_runners.add(runner)
+        self._logger.debug("Runners started, clearing out the runners container")
+        self.__runners.clear()
+
 
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
     def __init__(self):
