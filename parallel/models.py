@@ -113,3 +113,8 @@ class CommandLineRunnerAsThread(CommandLineRunner):
                                                      "timeout '{}s'".format(self.command,
                                                                             self.current_working_directory,
                                                                             self.timeout)) from e
+        self._logger.debug("Polling command '{}', "
+                           "current working directory at '{}', "
+                           "timeout '{}s'".format(self.command,
+                                                  self.current_working_directory,
+                                                  self.timeout))
