@@ -50,6 +50,7 @@ class ParallelRunnerManagerFactory:
 
 # Parallel Runner Managers
 class ParallelRunnerManager:
+    # TODO - Include an 'auto_start' flag to start runners as they are added to the manager
     def __init__(self):
         self._logger = config_manager \
             .get_app_config_manager() \
@@ -115,15 +116,18 @@ class ParallelRunnerManager:
 
 # Parallel Runners
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
+    # TODO - Refactor This, as responsibilities are a little bit mixed up
     def __init__(self):
         super().__init__()
         self._logger = config_manager \
             .get_app_config_manager() \
             .get_logger_for("{}.{}-{}".format(__name__, type(self).__name__, threading.current_thread().getName()))
-        self._stdout = b' '
-        self._stderr = b' '
+        # Flags
         self._done = False
+        self._error = False
         self._shutdown = False
+        # Return information (this could be an entity on its own in the next iteration)
+        self._error_messages = []
 
     @abc.abstractmethod
     def _run(self):
@@ -133,6 +137,13 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         self._logger.debug("--- START ---")
         try:
             self._run()
+        except ParallelRunnerException as e:
+            # This code is running on a separated thread, so this class, as top level 'client', must log the error for
+            # the application
+            error_message = "Parallel Runner failed ---> '{}'".format(e.value)
+            self._error_messages.append(error_message)
+            self._logger.error(error_message)
+            self._error = True
         finally:
             self._done = True
 
@@ -145,6 +156,28 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         self._logger.debug("--- WAIT ---")
         self.join()
 
+    def is_done(self):
+        return self._done
+
+    def is_error(self):
+        return self._error
+
+
+# Execution of commands
+class CommandLineRunner(ParallelRunner):
+    def __init__(self):
+        super().__init__()
+        self._logger = config_manager \
+            .get_app_config_manager() \
+            .get_logger_for("{}.{}".format(__name__, type(self).__name__))
+        self._stdout = b' '
+        self._stderr = b' '
+        self.command = None
+        self.command_success = False
+        self.command_return_code = 0
+        self.timeout = None
+        self.current_working_directory = None
+
     def get_stdout(self):
         # Never give it back until the runner is done with whatever it is doing
         if not self._done:
@@ -156,22 +189,6 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
         if not self._done:
             raise ParallelRunnerException("Runner is NOT DONE doing its job, thus 'stderr' is NOT AVAILABLE")
         return self._stderr
-
-    def is_done(self):
-        return self._done
-
-
-class CommandLineRunner(ParallelRunner):
-    def __init__(self):
-        super().__init__()
-        self._logger = config_manager \
-            .get_app_config_manager() \
-            .get_logger_for("{}.{}".format(__name__, type(self).__name__))
-        self.command = None
-        self.command_success = False
-        self.command_return_code = 0
-        self.timeout = None
-        self.current_working_directory = None
 
 
 class CommandLineRunnerAsThread(CommandLineRunner):
@@ -234,6 +251,9 @@ class CommandLineRunnerOnHpc(CommandLineRunner):
         self._logger = config_manager \
             .get_app_config_manager() \
             .get_logger_for("{}.{}-{}".format(__name__, type(self).__name__, threading.current_thread().getName()))
+
+    def _run(self):
+        pass
 
 
 if __name__ == '__main__':
