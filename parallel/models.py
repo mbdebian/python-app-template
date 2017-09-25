@@ -18,13 +18,20 @@ import threading
 import subprocess
 # App imports
 import config_manager
-from .exceptions import ParallelRunnerException, CommandLineRunnerAsThreadException, NoMoreAliveRunnersException
+from .exceptions import ParallelRunnerException, \
+    CommandLineRunnerAsThreadException, \
+    NoMoreAliveRunnersException, \
+    CommandIsNotDoneYet
 
 
 # Abstract Factories
 class CommandLineRunnerFactory:
     @staticmethod
     def get_command_line_runner():
+        """
+        This method will 'autoselect' the right command line runner to instantiate.
+        :return: a CommandLineRunner instance
+        """
         # This is the automatic selector between command line runners
         # TODO - This Factory is creating only local runners in the first iteration
         return CommandLineRunnerAsThread()
@@ -70,6 +77,10 @@ class ParallelRunnerManager:
         self.__runners.add(runner)
 
     def start_runners(self):
+        """
+        Start all the runners that have not been started yet on this manager.
+        :return: no return value
+        """
         self._logger.debug("Starting #{} Runners".format(len(self.__runners)))
         for runner in self.__runners:
             runner.start()
@@ -78,6 +89,11 @@ class ParallelRunnerManager:
         self.__runners.clear()
 
     def get_next_finished_runner(self):
+        """
+        Get the next runner that finishes
+        :return: ParallelRunner
+        :exception: NoMoreAliveRunnersException when there are no more runners running
+        """
         if not self.__alive_runners:
             raise NoMoreAliveRunnersException("No more runners left! They've all finished")
         runner_found = None
@@ -101,6 +117,10 @@ class ParallelRunnerManager:
         return runner_found
 
     def wait_all(self):
+        """
+        Wait for all runners to finish.
+        :return: no value returned
+        """
         self._logger.debug("Waiting for all #{} runners to finish".format(len(self.__alive_runners)))
         try:
             while True:
@@ -109,17 +129,32 @@ class ParallelRunnerManager:
             self._logger.debug("All runners are (should be) finished")
 
     def get_not_started_runners(self):
+        """
+        Get those runners that haven't started to run yet
+        :return: a set of runners
+        """
         return set(self.__runners)
 
     def get_alive_runners(self):
+        """
+        Get those runners that are running
+        :return: a set of runners
+        """
         return set(self.__alive_runners)
 
     def get_finished_runners(self):
+        """
+        Get those runners that have already finished
+        :return: a set of runners
+        """
         return set(self.__finished_runners)
 
 
 # Parallel Runners
 class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
+    """
+    This class models a thread that executes a parallel kernel, confined within a method delegated to subclasses.
+    """
     # TODO - Refactor This, as responsibilities are a little bit mixed up
     def __init__(self):
         super().__init__()
@@ -135,12 +170,19 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def _run(self):
+        """
+        Parallel kernel defined by subclasses
+        :return: no return value
+        """
         ...
 
     def run(self):
         self._logger.debug("--- START ---")
         try:
-            self._run()
+            if not self._shutdown:
+                self._run()
+            else:
+                self._logger.warning("--- ABORTED ---")
         except ParallelRunnerException as e:
             # This code is running on a separated thread, so this class, as top level 'client', must log the error for
             # the application
@@ -152,11 +194,19 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
             self._done = True
 
     def cancel(self):
+        """
+        'Try' to cancel the current running kernel
+        :return: no return value
+        """
         self._logger.debug("--- CANCEL ---")
         self._shutdown = True
         self._stop()
 
     def wait(self):
+        """
+        Wait for the current parallel kernel to finish
+        :return: no return value
+        """
         self._logger.debug("--- WAIT ---")
         self.join()
 
@@ -169,6 +219,9 @@ class ParallelRunner(threading.Thread, metaclass=abc.ABCMeta):
 
 # Execution of commands
 class CommandLineRunner(ParallelRunner):
+    """
+    This class models a parallel kernel that executes a command
+    """
     def __init__(self):
         super().__init__()
         self._logger = config_manager \
@@ -183,19 +236,27 @@ class CommandLineRunner(ParallelRunner):
         self.current_working_directory = None
 
     def get_stdout(self):
+        """
+        The standard output of the command is piped to this process, so it can be retrieved when the subprocess is done
+        :return: anything the command wrote on the standard output
+        :exception:
+        """
         # Never give it back until the runner is done with whatever it is doing
         if not self._done:
-            raise ParallelRunnerException("Runner is NOT DONE doing its job, thus 'stdout' is NOT AVAILABLE")
+            raise CommandIsNotDoneYet("Runner is NOT DONE doing its job, thus 'stdout' is NOT AVAILABLE")
         return self._stdout
 
     def get_stderr(self):
         # Never give it back until the runner is done with whatever it is doing
         if not self._done:
-            raise ParallelRunnerException("Runner is NOT DONE doing its job, thus 'stderr' is NOT AVAILABLE")
+            raise CommandIsNotDoneYet("Runner is NOT DONE doing its job, thus 'stderr' is NOT AVAILABLE")
         return self._stderr
 
 
 class CommandLineRunnerAsThread(CommandLineRunner):
+    """
+    This class models a command line runner that executes a command as a thread
+    """
     def __init__(self):
         super().__init__()
         self._logger = config_manager \
@@ -250,6 +311,9 @@ class CommandLineRunnerAsThread(CommandLineRunner):
 
 
 class CommandLineRunnerOnHpc(CommandLineRunner):
+    """
+    This class models a command line runner that executes a command as a job in an HPC environment
+    """
     def __init__(self):
         super().__init__()
         self._logger = config_manager \
