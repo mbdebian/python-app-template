@@ -21,10 +21,10 @@ class TestDownloadManager(unittest.TestCase):
     __logger = config_manager.get_app_config_manager().get_logger_for(__name__)
 
     def test_success_on_sample_files_download(self):
-        urls = ['ftp://ftp.ensembl.org/pub/release-89/fasta/homo_sapiens/pep/Homo_sapiens.GRCh38.pep.all.fa.gz',
-                'ftp://ftp.ensembl.org/pub/release-89/fasta/homo_sapiens/pep/Homo_sapiens.GRCh38.pep.abinitio.fa.gz',
-                'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.abinitio.gtf.gz',
-                'ftp://ftp.ensembl.org/pub/release-89/gtf/homo_sapiens/Homo_sapiens.GRCh38.89.chr.gtf.gz']
+        urls = ['http://ipv4.download.thinkbroadband.com/5MB.zip',
+                'http://ipv4.download.thinkbroadband.com/10MB.zip',
+                'http://ipv4.download.thinkbroadband.com/20MB.zip',
+                'http://ipv4.download.thinkbroadband.com/50MB.zip']
         destination_folder = config_manager.get_app_config_manager().get_session_working_dir()
         # Log the test environment
         self.__logger.info("Sample file URLs to download: {}".format(",".join(urls)))
