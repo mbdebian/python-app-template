@@ -17,7 +17,6 @@ import unittest
 # Application modules
 import config_manager
 
-
 __DEFAULT_CONFIG_FILE = "config_default.json"
 
 # Running mode
@@ -85,6 +84,7 @@ def main():
     else:
         # TODO - Implement what to run in normal mode
         pass
+
 
 if __name__ == "__main__":
     main()
