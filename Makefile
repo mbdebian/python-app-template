@@ -4,7 +4,7 @@ install_requirements:
 
 python_install:
 	@pip install --upgrade --user virtualenv
-	@virtualenv `which python3` python_install
+	@virtualenv -p `which python3` python_install
 
 tmp:
 	@mkdir tmp
