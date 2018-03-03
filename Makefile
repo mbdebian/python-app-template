@@ -3,8 +3,8 @@ install_requirements:
 	@python_install/bin/pip install -r requirements.txt
 
 python_install:
-	@pip install --user virtualenv
-	@virtualenv python_install
+	@pip install --upgrade --user virtualenv
+	@virtualenv `which python3` python_install
 
 tmp:
 	@mkdir tmp
